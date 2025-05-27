@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Tarefa {
-    private long id;
+    private final long id=System.currentTimeMillis();
     private String titulo;
     private String descricao;
     private LocalDate deadline;
@@ -11,6 +11,7 @@ public class Tarefa {
         this.titulo = titulo;
         this.descricao = descricao;
         this.deadline = deadline;
+
     }
 
     public String toString() {

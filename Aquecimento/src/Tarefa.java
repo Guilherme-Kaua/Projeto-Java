@@ -2,18 +2,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Tarefa {
-    private final long id=System.currentTimeMillis();
+    private final long id = System.currentTimeMillis();
     private String titulo;
     private String descricao;
     private LocalDate deadline;
-
-    // Tá? e o cara vai endoidar é?
 
     public Tarefa(String titulo, String descricao, LocalDate deadline) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.deadline = deadline;
 
+    }
+
+    public boolean equals(Tarefa outro) {
+        return (outro.getId() == getId());
     }
 
     public String toString() {

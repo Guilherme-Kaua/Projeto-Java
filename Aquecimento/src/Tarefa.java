@@ -7,6 +7,8 @@ public class Tarefa {
     private String descricao;
     private LocalDate deadline;
 
+    // Tá? e o cara vai endoidar é?
+
     public Tarefa(String titulo, String descricao, LocalDate deadline) {
         this.titulo = titulo;
         this.descricao = descricao;

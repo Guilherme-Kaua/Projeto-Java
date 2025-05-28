@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Tarefa {
-    private final long id=System.currentTimeMillis();
+    private final long id = System.currentTimeMillis();
     private String titulo;
     private String descricao;
     private LocalDate deadline;
@@ -13,11 +13,10 @@ public class Tarefa {
         this.titulo = titulo;
         this.descricao = descricao;
         this.deadline = deadline;
-
     }
 
     public String toString() {
-        return "Título da tarefa: " + titulo + ", Que vai até: " + deadline;
+        return "Título da tarefa: " + titulo + ", Que dura até: " + deadline;
     }
 
     public String getTitulo() {

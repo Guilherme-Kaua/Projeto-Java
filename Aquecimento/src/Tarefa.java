@@ -7,12 +7,14 @@ public class Tarefa {
     private String descricao;
     private LocalDate deadline;
 
-    // Tá? e o cara vai endoidar é?
-
     public Tarefa(String titulo, String descricao, LocalDate deadline) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.deadline = deadline;
+    }
+
+    public boolean equals(Tarefa outro) {
+        return (outro.getId() == getId());
     }
 
     public String toString() {

@@ -15,4 +15,21 @@ public class CentralDeInformacoes{
         todasAsTarefas.add(obj);
         return true;
     }
+
+    public Tarefa recuperarTarefaPorId(long id) {
+        for(Tarefa t: todasAsTarefas) {
+            if (t.getId() == id) {
+                return t;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Tarefa> getTodasAsTarefas() {
+        return todasAsTarefas;
+    }
+
+    public void setTodasAsTarefas(ArrayList<Tarefa> todasAsTarefas) {
+        this.todasAsTarefas = todasAsTarefas;
+    }
 }

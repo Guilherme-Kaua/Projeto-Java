@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="xStream">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/OneDrive/Desktop/xstream-1.4.21.jar!/" />
+      <root url="file://$PROJECT_DIR$/xStream" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/xStream" recursive="false" />
+  </library>
+</component>

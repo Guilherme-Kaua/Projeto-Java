@@ -36,7 +36,7 @@ public class Persistencia {
             return (CentralDeInformacoes) xstream.fromXML(fis);
         }
         //se o arquivo nao existir retorna uma nova instancia de estoque
-        return  new CentralDeInformacoes();
+        return new CentralDeInformacoes();
     }
 
 

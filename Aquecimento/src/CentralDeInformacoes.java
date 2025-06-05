@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class CentralDeInformacoes{
+public class CentralDeInformacoes {
     ArrayList<Tarefa> todasAsTarefas = new ArrayList<Tarefa>();
 
     public boolean adicionarTarefa(Tarefa obj){

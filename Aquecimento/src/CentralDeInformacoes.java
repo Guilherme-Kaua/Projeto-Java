@@ -1,7 +1,4 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class CentralDeInformacoes {
     ArrayList<Tarefa> todasAsTarefas = new ArrayList<Tarefa>();
@@ -25,9 +22,13 @@ public class CentralDeInformacoes {
         return null;
     }
 
-    public ArrayList<Tarefa> getTodasAsTarefas() {
-        return todasAsTarefas;
+
+    public void getTodasAsTarefas() {
+        for (Tarefa valor: todasAsTarefas){
+            System.out.println(valor);
+        }
     }
+
 
     public void setTodasAsTarefas(ArrayList<Tarefa> todasAsTarefas) {
         this.todasAsTarefas = todasAsTarefas;

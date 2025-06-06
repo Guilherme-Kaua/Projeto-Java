@@ -6,17 +6,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner input = new Scanner(System.in);
         Persistencia persistencia = new Persistencia();
         CentralDeInformacoes central = new CentralDeInformacoes();
 
-        while (true){
+        loop:while (true){
             persistencia.recuperarCentral();
             System.out.println("1 - nova tarefa\n2 - listar todas as tarefa\n3 – exibir informações de uma tarefa específica\ns - sair");
             String escolha = input.nextLine();
-            loop:switch (escolha){
+            switch (escolha){
                 case "1":
                     System.out.println("Digite o título");
                     String t = input.nextLine();
@@ -29,22 +30,15 @@ public class Main {
                     persistencia.salvarCentral(central);
                     break;
                 case "2":
-                    for (Tarefa valor: persistencia.recuperarCentral().getTodasAsTarefas()){
-                        System.out.println(valor);
-                    }
+                    persistencia.recuperarCentral().getTodasAsTarefas();
                     break;
                 case "3":
                     System.out.println("Digite o id da Tarefa que procura");
                     long pesquisa = input.nextLong();
-                    for (Tarefa valor: persistencia.recuperarCentral().getTodasAsTarefas()){
-                        long id = valor.getId();
-                        if (id == pesquisa){
-                            System.out.println(valor);
-                            break;
-                        }
-                    }
+                    System.out.println(persistencia.recuperarCentral().recuperarTarefaPorId(pesquisa));
                     break;
                 case "s":
+                    System.out.println("Obrigado por usar, saindo...");
                     break loop;
             }
         }

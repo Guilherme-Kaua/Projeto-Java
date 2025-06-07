@@ -36,6 +36,7 @@ public class Main {
                     System.out.println("Digite o id da Tarefa que procura");
                     long pesquisa = input.nextLong();
                     System.out.println(persistencia.recuperarCentral().recuperarTarefaPorId(pesquisa));
+                    input.nextLine();
                     break;
                 case "s":
                     System.out.println("Obrigado por usar, saindo...");

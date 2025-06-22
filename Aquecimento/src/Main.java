@@ -42,6 +42,7 @@ public class Main {
                     System.out.println("Obrigado por usar, saindo...");
                     break loop;
             }
+            GeradorDeRelatorios.obterTarefasDeUmDia(LocalDate.now(), central);
         }
     }
 }

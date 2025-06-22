@@ -1,0 +1,23 @@
+Index: .idea/Pre-Projeto.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Pre-Projeto.iml b/Pre-Projeto.iml
+rename from .idea/Pre-Projeto.iml
+rename to Pre-Projeto.iml
+--- a/.idea/Pre-Projeto.iml	(revision 35e4b62cdbf16afdcf86b88784ab0e4c35cc3e9f)
++++ b/Pre-Projeto.iml
+@@ -1,11 +1,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="JAVA_MODULE" version="4">
+-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+-    <exclude-output />
+-    <content url="file://$MODULE_DIR$">
+-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+-    </content>
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file

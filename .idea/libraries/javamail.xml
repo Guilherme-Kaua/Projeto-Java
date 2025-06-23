@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="javamail">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/docs/javadocs" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/client" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/logging" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/outlook" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/servlet" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/webapp/src/classes" />
+      <root url="jar://$USER_HOME$/Downloads/javamail1_4_5.zip!/javamail-1.4.5/demo/webapp/src/taglib" />
+    </SOURCES>
+  </library>
+</component>

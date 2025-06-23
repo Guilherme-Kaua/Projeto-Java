@@ -8,6 +8,9 @@ public class Tarefa {
     private LocalDate deadline;
 
     public Tarefa(String titulo, String descricao, LocalDate deadline) {
+        if (titulo.isEmpty() || descricao.isEmpty()){
+            throw new NullPointerException();
+        }
         this.titulo = titulo;
         this.descricao = descricao;
         this.deadline = deadline;

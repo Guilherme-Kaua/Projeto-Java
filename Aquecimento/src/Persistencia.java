@@ -18,6 +18,7 @@ public class Persistencia {
         //convertendo objeto em uma String em formato xml
         String xml = xstream.toXML(central);
 
+        //se arquivo não existe, ele cria um
         if(!arquivo.exists()) arquivo.createNewFile();
 
         //gravar as informaçoes no arquivo

@@ -1,22 +1,10 @@
 <CentralDeInformacoes>
   <todasAsTarefas>
     <Tarefa>
-      <id>1749136515872</id>
-      <titulo>oi</titulo>
-      <descricao>Uma tarefa</descricao>
-      <deadline>2025-06-05</deadline>
-    </Tarefa>
-    <Tarefa>
-      <id>1749136518874</id>
-      <titulo>oi2</titulo>
-      <descricao>Uma tarefa a</descricao>
-      <deadline>2012-06-12</deadline>
-    </Tarefa>
-    <Tarefa>
-      <id>1749136521875</id>
-      <titulo>oi3</titulo>
-      <descricao>Uma tarefa b</descricao>
-      <deadline>2021-05-02</deadline>
+      <id>1750698862980</id>
+      <titulo>teste 30</titulo>
+      <descricao>testando como sempre</descricao>
+      <deadline>2026-02-01</deadline>
     </Tarefa>
   </todasAsTarefas>
 </CentralDeInformacoes>

@@ -1,64 +1,69 @@
-import java.io.File;
 import java.util.Properties;
-
-import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.MultiPartEmail;
-
-
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
+import jakarta.activation.*;
+import java.io.File;
+import java.time.LocalDate;
 
 public class Mensageiro {
+    public void enviarEmailComPdf(String email) {
+        // Configuração do servidor SMTP
+        String host = "smtp.gmail.com";
+        final String username = "testedeemailspdfs@gmail.com";
+        final String password = "pccrajhfqiqepefp"; // (não deixe isso hardcoded em produção)
 
-    public static void enviarEmail(String senhaApp, String remetente, String destinatario) {
-        // --- Melhoria: Caminho dinâmico para o arquivo ---
-        String homeDir = System.getProperty("user.home");
-        File f = new File(homeDir + "\\IdeaProjects\\Pre-Projeto\\Relatorio.pdf");
+        // Destinatário
+        String to = email;
+        System.out.println("Enviando para: " + to); // Debug
 
-        // Verifica se o arquivo existe antes de tentar anexar
-        if (!f.exists()) {
-            System.err.println("Erro: O arquivo de anexo não foi encontrado em " + f.getPath());
-            return; // Interrompe a execução se o anexo não existe
-        }
+        // Data de Hoje
+        LocalDate data = LocalDate.now();
 
+        // Configuração das propriedades
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
 
-        EmailAttachment attachment = new EmailAttachment();
-        attachment.setPath(f.getPath());
-        attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("Relatório de Projeto");
-        attachment.setName(f.getName());
+        // Cria a sessão
+        Session session = Session.getInstance(props,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                }
+        );
 
         try {
-            MultiPartEmail email = new MultiPartEmail();
-            email.setDebug(true); // Mantém o debug para ver os logs detalhados
-            email.setHostName("smtp.gmail.com");
+            // Cria a mensagem
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject("Seu PDF - " + data);
 
-// opcional: props.put("mail.smtp.ssl.ciphersuites", "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");
+            // Parte do texto
+            MimeBodyPart textoParte = new MimeBodyPart();
+            textoParte.setText("Olá! Segue em anexo o PDF solicitado.");
+
+            // Parte do anexo
+            MimeBodyPart anexoParte = new MimeBodyPart();
+            anexoParte.attachFile(new File("C:\\Users\\js185\\Documents\\arquivo.pdf"));
 
 
-            // --- CORREÇÃO DA CONFIGURAÇÃO DE SEGURANÇA ---
-            email.setSmtpPort(587); // 1. Define a porta correta para STARTTLS
-            email.setAuthentication(remetente, senhaApp); // 2. Usa o email e a SENHA DE APP
-            email.setStartTLSEnabled(true);// 3. Habilita o STARTTLS
-            // As linhas setSSL(true) e setSslSmtpPort() foram removidas para evitar conflito.
+            // Junta tudo
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(textoParte);
+            multipart.addBodyPart(anexoParte);
 
-            email.addTo(destinatario);
-            email.setFrom(remetente, "Nome do Remetente"); // Boa prática: definir um nome
-            email.setSubject("Teste de Envio de Email com Anexo");
-            email.setMsg("Olá,\n\nSegue em anexo o relatório conforme solicitado.\n\nAtenciosamente.");
+            message.setContent(multipart);
 
-            email.attach(attachment);
-            email.send();
-
+            // Envia o e-mail
+            Transport.send(message);
             System.out.println("Email enviado com sucesso!");
 
-        } catch (EmailException e) {
-            System.err.println("Ocorreu um erro ao enviar o email.");
-            e.printStackTrace(); // Imprime o erro detalhado para diagnóstico
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        // IMPORTANTE: A senha aqui deve ser a SENHA DE APP de 16 letras, não a senha da conta.
-        Mensageiro.enviarEmail("pccrajhfquiquepefp", "testeemailspdfs@gmail.com", "testeemailspdfs@gmail.com");
     }
 }

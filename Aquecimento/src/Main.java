@@ -17,7 +17,7 @@ public class Main {
 
         loop:while (true){
             persistencia.recuperarCentral();
-            System.out.println("1 - nova tarefa\n2 - listar todas as tarefa\n3 – exibir informações de uma tarefa específica\n4 – Gerar relatório de tarefas de um dia específico\ns - sair");
+            System.out.println("1 - nova tarefa\n2 - listar todas as tarefa\n3 – exibir informações de uma tarefa específica\n4 – Gerar relatório de tarefas de um dia específico\n5 - Enviar email com PDF\ns - sair");
             String escolha = input.nextLine();
             switch (escolha){
                 case "1":
@@ -57,6 +57,17 @@ public class Main {
                     } catch (Exception e){
                         TratarErrosException.imprimirErroFormatado(e);
                     }
+                case "5":
+                    System.out.println("Digite o e-mail de destino:");
+                    String email = input.nextLine();
+
+                    if (email == null || email.trim().isEmpty()) {
+                        System.out.println("E-mail inválido.");
+                        break;
+                    }
+                    Mensageiro mensageiro = new Mensageiro();
+                    mensageiro.enviarEmailComPdf(email);
+                    break;
                 case "s":
                     input.close();
                     System.out.println("Obrigado por usar, saindo...\n");

@@ -13,14 +13,17 @@ public class Mensageiro {
 
         props.put("mail.smtp.user", remetente);
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "25");
+        props.put("mail.smtp.port", "465");
         props.put("mail.debug", "true");
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.tls", "true");
         props.put("mail.smtp.starttls.enable","true");
+        props.put("mail.smtp.ssl","true");
+        props.put("mail.smtp.ssl.enable", "true");
         props.put("mail.smtp.EnableSSL.enable","true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2 TLSv1.3");
 
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
         props.setProperty("mail.smtp.port", "465");
         props.setProperty("mail.smtp.socketFactory.port", "465");
 
@@ -31,6 +34,7 @@ public class Mensageiro {
                 return new PasswordAuthentication(remetente,senha);
             }
         });
+
 
         session.setDebug(true);
 
@@ -45,6 +49,7 @@ public class Mensageiro {
             message.setSubject(assunto);
             message.setText(msg);
             Transport.send(message);
+            System.out.println("Feito!!!");
 
         } catch (MessagingException e) {
             e.getMessage();
@@ -52,6 +57,6 @@ public class Mensageiro {
     }
 
     public static void main(String[] args) {
-        Mensageiro.enviarEmail("lasanha123","testedeemailspdfs@gmail.com","guilhermekauams@gmail.com","EAEEEE","teste teste 123");
+        Mensageiro.enviarEmail("pccr ajhf quique pefp","testedeemailspdfs@gmail.com","guilhermekauams@gmail.com","EAEEEE","teste teste 123");
     }
 }

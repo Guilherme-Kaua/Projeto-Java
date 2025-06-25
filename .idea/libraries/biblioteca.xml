@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="biblioteca">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Aquecimento/biblioteca" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/commons-email-1.6.0-sources.jar!/" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/Aquecimento/biblioteca" recursive="false" />
+  </library>
+</component>

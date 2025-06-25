@@ -6,18 +6,15 @@ import java.io.File;
 import java.time.LocalDate;
 
 public class Mensageiro {
-    public void enviarEmailComPdf(String email) {
+    public void enviarEmailComPdf(String email, LocalDate data, CentralDeInformacoes central) {
         // Configuração do servidor SMTP
         String host = "smtp.gmail.com";
         final String username = "testedeemailspdfs@gmail.com";
-        final String password = "pccrajhfqiqepefp"; // (não deixe isso hardcoded em produção)
+        final String password = "pccrajhfqiqepefp"; // Use uma senha de app
 
         // Destinatário
         String to = email;
-        System.out.println("Enviando para: " + to); // Debug
-
-        // Data de Hoje
-        LocalDate data = LocalDate.now();
+        System.out.println("Enviando para: " + to);
 
         // Configuração das propriedades
         Properties props = new Properties();
@@ -36,20 +33,22 @@ public class Mensageiro {
         );
 
         try {
+            // 📝 Gera o PDF com base na data e tarefas
+            GeradorDeRelatorios.obterTarefasDeUmDia(data, central);
+
             // Cria a mensagem
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Seu PDF - " + data);
+            message.setSubject("Relatório de tarefas - " + data);
 
             // Parte do texto
             MimeBodyPart textoParte = new MimeBodyPart();
-            textoParte.setText("Olá! Segue em anexo o PDF solicitado.");
+            textoParte.setText("Olá! Segue em anexo o relatório das tarefas do dia " + data + ".");
 
             // Parte do anexo
             MimeBodyPart anexoParte = new MimeBodyPart();
-            anexoParte.attachFile(new File("C:\\Users\\js185\\Documents\\arquivo.pdf"));
-
+            anexoParte.attachFile(new File("Relatorio.pdf")); // PDF gerado pela sua classe
 
             // Junta tudo
             Multipart multipart = new MimeMultipart();
@@ -63,6 +62,7 @@ public class Mensageiro {
             System.out.println("Email enviado com sucesso!");
 
         } catch (Exception e) {
+            System.out.println("Falha ao enviar e-mail:");
             e.printStackTrace();
         }
     }

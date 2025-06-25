@@ -1,13 +1,9 @@
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.IOException;
-import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -15,48 +11,75 @@ public class Main {
         Persistencia persistencia = new Persistencia();
         CentralDeInformacoes central = new CentralDeInformacoes();
 
-        loop:while (true){
+        loop:
+        while (true) {
             persistencia.recuperarCentral();
-            System.out.println("1 - nova tarefa\n2 - listar todas as tarefa\n3 – exibir informações de uma tarefa específica\n4 – Gerar relatório de tarefas de um dia específico\n5 - Enviar email com PDF\ns - sair");
+            System.out.println(
+                    "1 - nova tarefa\n" +
+                            "2 - listar todas as tarefas\n" +
+                            "3 - exibir informações de uma tarefa específica\n" +
+                            "4 - gerar relatório de tarefas de um dia específico\n" +
+                            "5 - enviar email com PDF\n" +
+                            "s - sair"
+            );
+
             String escolha = input.nextLine();
-            switch (escolha){
+
+            switch (escolha) {
                 case "1":
-                    System.out.println("Digite o título");
+                    System.out.println("Digite o título:");
                     String t = input.nextLine();
-                    System.out.println("Digite a descrição");
+
+                    System.out.println("Digite a descrição:");
                     String d = input.nextLine();
-                    try{
-                        System.out.println("Digite o dia, mês e ano (dia/mês/ano) sem espaços");
+
+                    try {
+                        System.out.println("Digite o dia, mês e ano (dia/mês/ano) sem espaços:");
                         String[] data = input.nextLine().split("/");
-                        Tarefa tarefa = new Tarefa(t,d, LocalDate.of(Integer.parseInt(data[2]),Integer.parseInt(data[1]),Integer.parseInt(data[0])));
+                        Tarefa tarefa = new Tarefa(t, d,
+                                LocalDate.of(
+                                        Integer.parseInt(data[2]),
+                                        Integer.parseInt(data[1]),
+                                        Integer.parseInt(data[0])
+                                )
+                        );
                         central.adicionarTarefa(tarefa);
                         persistencia.salvarCentral(central);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         TratarErrosException.imprimirErroFormatado(e);
                     }
                     break;
+
                 case "2":
                     persistencia.recuperarCentral().getTodasAsTarefas();
                     break;
+
                 case "3":
-                    System.out.println("Digite o id da Tarefa que procura");
-                    try{
+                    System.out.println("Digite o ID da tarefa que procura:");
+                    try {
                         long pesquisa = input.nextLong();
                         System.out.println(persistencia.recuperarCentral().recuperarTarefaPorId(pesquisa));
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         TratarErrosException.imprimirErroFormatado(e);
                     }
-                    input.nextLine();
+                    input.nextLine(); // Limpa o buffer
                     break;
+
                 case "4":
-                    System.out.println("Digite o dia especifíco das tarefas (dia/mês/ano) sem espaços = ");
-                    try{
+                    System.out.println("Digite o dia específico das tarefas (dia/mês/ano) sem espaços:");
+                    try {
                         String[] espec = input.nextLine().split("/");
-                        GeradorDeRelatorios.obterTarefasDeUmDia(LocalDate.of(Integer.parseInt(espec[2]),Integer.parseInt(espec[1]),Integer.parseInt(espec[0])), persistencia.recuperarCentral());
-                    } catch (Exception e){
+                        LocalDate dataRelatorio = LocalDate.of(
+                                Integer.parseInt(espec[2]),
+                                Integer.parseInt(espec[1]),
+                                Integer.parseInt(espec[0])
+                        );
+                        GeradorDeRelatorios.obterTarefasDeUmDia(dataRelatorio, persistencia.recuperarCentral());
+                    } catch (Exception e) {
                         TratarErrosException.imprimirErroFormatado(e);
                     }
+                    break;
+
                 case "5":
                     System.out.println("Digite o e-mail de destino:");
                     String email = input.nextLine();
@@ -65,15 +88,30 @@ public class Main {
                         System.out.println("E-mail inválido.");
                         break;
                     }
-                    Mensageiro mensageiro = new Mensageiro();
-                    mensageiro.enviarEmailComPdf(email);
+
+                    System.out.println("Digite a data do relatório (dia/mês/ano):");
+                    try {
+                        String[] partes = input.nextLine().split("/");
+                        LocalDate data = LocalDate.of(
+                                Integer.parseInt(partes[2]),
+                                Integer.parseInt(partes[1]),
+                                Integer.parseInt(partes[0])
+                        );
+
+                        Mensageiro mensageiro = new Mensageiro();
+                        mensageiro.enviarEmailComPdf(email, data, persistencia.recuperarCentral());
+                    } catch (Exception e) {
+                        TratarErrosException.imprimirErroFormatado(e);
+                    }
                     break;
+
                 case "s":
                     input.close();
-                    System.out.println("Obrigado por usar, saindo...\n");
+                    System.out.println("Obrigado por usar. Saindo...");
                     break loop;
+
                 default:
-                    System.out.println("Opção Inválida...\n");
+                    System.out.println("Opção inválida.\n");
                     break;
             }
         }

@@ -51,7 +51,16 @@ public class Main {
                     break;
 
                 case "2":
-                    persistencia.recuperarCentral().getTodasAsTarefas();
+                    try{
+                        if (persistencia.recuperarCentral().todasAsTarefas.isEmpty()){
+                            throw new NullPointerException();
+                        }
+                        persistencia.recuperarCentral().getTodasAsTarefas();
+
+                    } catch (Exception e) {
+                        System.out.println("\nNão tem tarefas disponíveis para mostrar\n");;
+                    }
+
                     break;
 
                 case "3":
@@ -64,7 +73,6 @@ public class Main {
                     }
                     input.nextLine(); // Limpa o buffer
                     break;
-
                 case "4":
                     System.out.println("Digite o dia específico das tarefas (dia/mês/ano) sem espaços:");
                     try {
@@ -79,8 +87,8 @@ public class Main {
                         TratarErrosException.imprimirErroFormatado(e);
                     }
                     break;
-
                 case "5":
+
                     System.out.println("Digite o e-mail de destino:");
                     String email = input.nextLine();
 
@@ -104,7 +112,6 @@ public class Main {
                         TratarErrosException.imprimirErroFormatado(e);
                     }
                     break;
-
                 case "s":
                     input.close();
                     System.out.println("Obrigado por usar. Saindo...");

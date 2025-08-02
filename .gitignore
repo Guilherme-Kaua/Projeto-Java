@@ -1,24 +1,35 @@
-# Compiled class file
-*.class
-
-# Log file
+# Arquivos de log e temporários
 *.log
+hs_err_pid*
+replay_pid*
 
-# BlueJ files
-*.ctxt
+# Arquivos gerados pelo sistema operacional
+.DS_Store
+Thumbs.db
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Arquivos compilados do Java
+*.class
 *.jar
 *.war
-*.nar
 *.ear
+*.nar
+
+# Arquivos gerados pelo projeto
+/Relatorio.pdf
+/central.xml
+/teste
+
+# Diretórios de build do Maven e IntelliJ
+/out/
+/target/
+.idea/shelf/
+
+# Arquivos de configuração da IDE (IntelliJ)
+.idea/workspace.xml
+.idea/libraries/
+*.iml
+
+# Ignorar arquivos de pacotes
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*

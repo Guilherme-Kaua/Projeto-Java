@@ -1,9 +1,16 @@
-import java.util.Properties;
-import jakarta.mail.*;
-import jakarta.mail.internet.*;
-import jakarta.activation.*;
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Properties;
+
+import jakarta.mail.Message;
+import jakarta.mail.Multipart;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 public class Mensageiro {
     public void enviarEmailComPdf(String email, LocalDate data, CentralDeInformacoes central) {

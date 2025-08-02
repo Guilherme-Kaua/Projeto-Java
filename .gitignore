@@ -17,7 +17,7 @@ Thumbs.db
 # Arquivos gerados pelo projeto
 /Relatorio.pdf
 /central.xml
-/teste
+teste/
 
 # Diretórios de build do Maven e IntelliJ
 /out/

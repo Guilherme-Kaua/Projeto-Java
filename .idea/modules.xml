@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Pre-Projeto.iml" filepath="$PROJECT_DIR$/Pre-Projeto.iml" />
       <module fileurl="file://$PROJECT_DIR$/Aquecimento/scr.iml" filepath="$PROJECT_DIR$/Aquecimento/scr.iml" />
       <module fileurl="file://$PROJECT_DIR$/telas/telas.iml" filepath="$PROJECT_DIR$/telas/telas.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
